@@ -10,14 +10,16 @@ const AddUser=(props)=>{
 
     const[enteredUsername,setenteredUsername]=useState('')
     const[enteredAge,setenteredAge]=useState('')
+    const[enteredCollegeName, setEnteredCollegeName]=useState('')
     const[error,setError]=useState()
+
 
     const addUserHandler=(event)=>{
         event.preventDefault()
-        if(enteredUsername.trim().length===0 || enteredAge.trim().length===0){
+        if(enteredUsername.trim().length===0 || enteredAge.trim().length===0 || enteredCollegeName.trim().length===0){
             setError({
                 title:'An invalid details',
-                message:'Please enter a valid name and age'
+                message:'Please enter a valid name, age and college name'
             })
             return
         }
@@ -28,9 +30,11 @@ const AddUser=(props)=>{
             })
             return
         }
-        props.onAddUser(enteredUsername,enteredAge)
+
+        props.onAddUser(enteredUsername,enteredAge,enteredCollegeName)
         setenteredUsername('')
         setenteredAge('')
+        setEnteredCollegeName('')
     }
 
         const Usernamechangehandler=(event)=>{
@@ -39,6 +43,10 @@ const AddUser=(props)=>{
 
         const Agechangehandler=(event)=>{
             setenteredAge(event.target.value)
+        }
+
+        const CollegeNameHandler=(event)=>{
+            setEnteredCollegeName(event.target.value)
         }
 
         const errorhandler=()=>{
@@ -57,6 +65,9 @@ const AddUser=(props)=>{
             
             <label htmlFor="age">Age(years)</label>
             <input id="age"type='number'value={enteredAge} onChange={Agechangehandler} />
+
+            <label htmlFor="collegename">CollegeName</label>
+            <input id='collegename' type='text' value={enteredCollegeName} onChange={CollegeNameHandler} />
             <Button type='submit'>AddUser</Button>
             {/* <button type='submit'> Add</button> */}
         </form>

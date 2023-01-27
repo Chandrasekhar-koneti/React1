@@ -9,9 +9,9 @@ import UserList from './Components/User/UsersList';
 function App() {
   const [usersList, setuserslist]=useState([])
 
-  const addUserHandler=(uName,uAge)=>{
+  const addUserHandler=(uName,uAge,uColName)=>{
     setuserslist((prevuserslist)=>{
-      return [...prevuserslist ,{name:uName, age:uAge , id:Math.random().toString()}]
+      return [...prevuserslist ,{name:uName,age:uAge , cname:uColName , id:Math.random().toString()}]
     })
   }
 
